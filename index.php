@@ -1,5 +1,7 @@
 <?php
 
+
+require 'config/config.php';
 require 'config/database.php';
 $db = new Database();
 $con = $db->conectar();
@@ -103,7 +105,7 @@ function listarArchivos($con)
           <div class="col">
 
             <div class="card shadow-sm">
-              <img class="imgProducto" src="data:image/jpg;base64,<?= base64_encode($imagen) ?>">
+              <img src="data:image/jpg;base64,<?= base64_encode($imagen) ?>" class="d-block w-100">
               <div class="card-body">
                 <h5 class="card-title">
                   <?php echo $nombre ?>
@@ -114,7 +116,8 @@ function listarArchivos($con)
                 </p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="" class="btn btn-primary">Detalles</a>
+                    <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php 
+                    echo hash_hmac('sha256',$row['id'], KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
                   </div>
                   <a href="" class="btn btn-success">Agregar</a>
                 </div>
