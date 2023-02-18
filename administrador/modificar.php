@@ -8,6 +8,7 @@ $nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
 $categoria = $_POST['categoria'];
 $precio = $_POST['precio'];
+$descuento = $_POST['descuento'];
 $activo = $_POST['activo'];
 $imagen = $_FILES['imagen'];
 //move_uploaded_file($_FILES['imagen']['tmp_name'],"../img/".$_FILES['imagen']);
@@ -24,10 +25,10 @@ if ($tmp) {
 
 
 if ($archivoBLOB) {
-    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',activo='$activo',imagen='$archivoBLOB' WHERE id='$id'";
+    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',descuento='$descuento',activo='$activo',imagen='$archivoBLOB' WHERE id='$id'";
     $query = mysqli_query($con, $sql);
 } else {
-    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',activo='$activo' WHERE id='$id'";
+    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',descuento='$descuento',activo='$activo' WHERE id='$id'";
     $query = mysqli_query($con, $sql);
 }
 

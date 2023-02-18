@@ -6,6 +6,7 @@ $nombre=$_POST['nombre'];
 $descripcion=$_POST['descripcion'];
 $categoria=$_POST['categoria'];
 $precio=$_POST['precio'];
+$descuento = $_POST['descuento'];
 $activo=$_POST['activo'];
 $imgFile = $_FILES['imagen'];
 //move_uploaded_file($_FILES['imagen']['tmp_name'],"../img/".$_FILES['imagen']);
@@ -17,10 +18,10 @@ $imgFile = $_FILES['imagen'];
  $archivoBLOB=addslashes($contenido);
 
 if($tmp!=""){
-    $sql="INSERT INTO products VALUES('null','$nombre','$descripcion','$precio','$categoria','$activo','$archivoBLOB')";
+    $sql="INSERT INTO products VALUES('null','$nombre','$descripcion','$precio','$descuento','$categoria','$activo','$archivoBLOB')";
     $query= mysqli_query($con,$sql);
 }else{
-    $sql="INSERT INTO products VALUES('null','$nombre','$descripcion','$precio','$categoria','$activo')";
+    $sql="INSERT INTO products VALUES('null','$nombre','$descripcion','$precio','$descuento','$categoria','$activo')";
     $query= mysqli_query($con,$sql);
 }
 

@@ -21,7 +21,7 @@ if($id == '' || $token == ''){
         $sql = $con->prepare("SELECT count(id) FROM products WHERE id=? AND activo=1");
         $sql->execute([$id]);
         if($sql->fetchColumn() > 0){
-            $sql = $con->prepare("SELECT nombre, descripcion, precio, descuento, imagen FROM products 
+            $sql = $con->prepare("SELECT nombre, descripcion, precio, descuento, activo, imagen FROM products 
             WHERE id=? AND activo=1 LIMIT 1");
             $sql->execute([$id]);
             $row = $sql->fetch(PDO::FETCH_ASSOC); //nos va a traer lo que encontro
@@ -31,6 +31,9 @@ if($id == '' || $token == ''){
             $precio = $row['precio'];
             $descuento = $row['descuento'];
             $precio_desc = $precio - (($precio * $descuento) / 100);
+        } else{
+          echo 'error al procesar la petición';
+          exit;
         }
      
     } else{
@@ -103,7 +106,8 @@ function listarArchivos($con)
             <a href="#" class="nav-link">Contacto</a>
           </li>
         </ul>
-        <a href="cart.php" class="btn btn-primary">Carrito</a>
+        <a href="checkout.php" class="btn btn-primary">
+          Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span></a>
       </div>
     </div>
   </header>
@@ -111,14 +115,17 @@ function listarArchivos($con)
     <div class="container">
         <div class="row">
             <div class="col-md-6 order-md-1">
-                <img src="data:image/jpg;base64,<?= base64_encode($imagen) ?>">
+                <img class="img-fluid img-thumbnail"  src="data:image/jpg;base64,<?= base64_encode($imagen) ?>">
             </div>
             <div class="col-md-6 order-md-2">
                 <h2><?php echo $nombre; ?></h2>
-                <?php if($descuento > 0){ ?>}
+                <p class="lead">
+                    <?php echo $descripcion; ?>
+                </p>
+                <?php if($descuento > 0){ ?>
                 <p><del><?php echo MONEDA . number_format(($precio),2,'.',','); ?></del></p>
                 <h2><?php echo MONEDA . number_format(($precio_desc),2,'.',','); ?>
-                <small class="text-success"><?php echo $descuento; ?></small>
+                <small class="text-success"><?php echo '-'. $descuento?>% descuento</small>
                 </h2>
 
                 <?php } else { ?>
@@ -127,13 +134,23 @@ function listarArchivos($con)
                 <?php } ?>
 
                 
-                <p class="lead">
-                    <?php echo $descripcion; ?>
-                </p>
-            </div>
-            <div class="d-grid gap-3 col-10 mx-auto">
+                
+                <div class="d-grid gap-3 col-10 mx-auto">
                 <button class="btn btn-primary" type="button">Comprar ahora</button>
-                <button class="btn btn-outline-primary" type="button">Agregar al carrito</button>
+                <button class="btn btn-outline-primary" type="button" 
+                onclick="addProduct(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">
+                Agregar al carrito</button>
             </div>
+            </div>
+            
         </div>
     </div>
+
+    
+
+    <script src="js/script.js"></script>
+
+
+        
+
+    </body>

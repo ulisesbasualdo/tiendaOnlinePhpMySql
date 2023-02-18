@@ -1,5 +1,5 @@
 <?php
-
+require '../config/config.php';
 include("../conexion.php");
 $con = conectar(); //llamando la conexion
 $sql = "SELECT * FROM products";
@@ -60,7 +60,7 @@ if ($now > $_SESSION['expire']) {
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    
     <title>Admin - Cargar Productos</title>
 </head>
 
@@ -97,6 +97,7 @@ if ($now > $_SESSION['expire']) {
                 <input type="text" class="form-control mb-3" name="descripcion" placeholder="Descripción">
                 <input type="text" class="form-control mb-3" name="categoria" placeholder="Categoria">
                 <input type="text" class="form-control mb-3" name="precio" placeholder="precio">
+                <input type="text" class="form-control mb-3" name="descuento" placeholder="descuento">
                 <input type="text" class="form-control mb-3" name="activo" placeholder="activo">
                 <input type="file" class="form-control mb-3" name="imagen">
 
@@ -186,6 +187,8 @@ if ($now > $_SESSION['expire']) {
           $descripcion = $datos['descripcion'];
           $categoria = $datos['categoria'];
           $precio = $datos['precio'];
+          $descuento = $datos['descuento'];
+          $precio_desc = $precio - (($precio * $descuento) / 100);
           $activo = $datos['activo'];
           $imagen = $datos['imagen'];
 
@@ -198,7 +201,7 @@ if ($now > $_SESSION['expire']) {
           <div class="col">
 
             <div class="card shadow-sm">
-              <img class="object-fit-cover" width="100%" src="data:image/jpg;base64,<?= base64_encode($imagen) ?>">
+              <img class="card-img-top img-fluid" style="object-fit: cover; height: 300px;" width="100%" src="data:image/jpg;base64,<?= base64_encode($imagen) ?>">
               <div class="card-body">
                 <h5 class="card-title">
                   Nombre:<?php echo $nombre ?>
@@ -212,10 +215,21 @@ if ($now > $_SESSION['expire']) {
                 <h5 class="card-title">
                 Activo:<?php echo $activo ?>
                 </h5>
-                <p class="card-title">
+                <h5 class="card-title">
                 Precio: $
                   <?php echo number_format(($precio), '2', '.', ','); ?>
-                </p>
+                </h5>
+                <h5 class="card-title">
+                Descuento:
+                  <?php echo $descuento ?>%
+                </h5>
+
+                <?php if ($descuento > 0) { ?>
+                    <h5 class="card-title">
+                    Total con Descuento:
+                    <?php echo MONEDA . number_format(($precio_desc), 2, '.', ','); ?>
+                    </h5>
+                <?php } ?>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     

@@ -30,6 +30,7 @@ $row=mysqli_fetch_array($query);
                 Descripcion:<input value="<?php echo $row['descripcion']  ?>" type="text" class="form-control mb-3" name="descripcion">
                 Categoria:<input value="<?php echo $row['categoria']  ?>" type="text" class="form-control mb-3" name="categoria">
                 Precio:<input value="<?php echo $row['precio']  ?>" type="text" class="form-control mb-3" name="precio">
+                Descuento:<input value="<?php echo $row['descuento']  ?>" type="text" class="form-control mb-3" name="descuento">
                 Activo:<input value="<?php echo $row['activo']  ?>" type="text" class="form-control mb-3" name="activo">
                 Imagen:
                 <?php $imagen = $row['imagen'];?>

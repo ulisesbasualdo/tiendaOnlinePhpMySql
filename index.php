@@ -74,7 +74,8 @@ function listarArchivos($con)
             <a href="#" class="nav-link">Contacto</a>
           </li>
         </ul>
-        <a href="cart.php" class="btn btn-primary">Carrito</a>
+        <a href="checkout.php" class="btn btn-primary">
+          Carrito<span id="num_cart" class="badge bg-secondary"><?php echo $num_cart; ?></span></a>
       </div>
     </div>
   </header>
@@ -82,8 +83,8 @@ function listarArchivos($con)
 
 
 
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="container" >
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
         <?php
         //include "config/conexion.php";
         $lista = listarArchivos($con);
@@ -95,6 +96,8 @@ function listarArchivos($con)
           $precio = $datos['precio'];
           $activo = $datos['activo'];
           $imagen = $datos['imagen'];
+          $descuento = $datos['descuento'];
+          $precio_desc = $precio - (($precio * $descuento) / 100);
 
           $imagenConvertida = "<img src='data:image/jpg;base64," . base64_encode($imagen) . "' >";
           // $imagenConvertida = "<img src='data:image/jpg;base64," . base64_encode($imagen) . "' >";
@@ -105,21 +108,33 @@ function listarArchivos($con)
           <div class="col">
 
             <div class="card shadow-sm">
-              <img src="data:image/jpg;base64,<?= base64_encode($imagen) ?>" class="d-block w-100">
+              <img src="data:image/jpg;base64,<?= base64_encode($imagen) ?>" 
+              class="card-img-top img-fluid" style="object-fit: cover; height: 300px;">
               <div class="card-body">
                 <h5 class="card-title">
                   <?php echo $nombre ?>
                 </h5>
-                <p class="card-text">
-                  $
-                  <?php echo number_format(($precio), '2', '.', ','); ?>
-                </p>
+
+                <?php if($descuento > 0){ ?>
+                <del><?php echo MONEDA . number_format(($precio),2,'.',','); ?></del>
+                <h3><?php echo MONEDA . number_format(($precio_desc),2,'.',','); ?>
+                <small class="text-success"><?php echo '-'. $descuento?>% descuento</small>
+                </h3>
+
+                <?php } else { ?>
+                    <p class="card-text"><?php echo MONEDA . number_format(($precio),2,'.',','); ?></p>
+
+                <?php } ?>
+
+
+
+              
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <a href="details.php?id=<?php echo $row['id']; ?>&token=<?php 
-                    echo hash_hmac('sha256',$row['id'], KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
+                    <a href="details.php?id=<?php echo $id; ?>&token=<?php 
+                    echo hash_hmac('sha256',$id, KEY_TOKEN); ?>" class="btn btn-primary">Detalles</a>
                   </div>
-                  <a href="" class="btn btn-success">Agregar</a>
+                  <a class="btn btn-success" onclick="addProduct(<?php echo $id; ?>, '<?php echo hash_hmac('sha256',$id, KEY_TOKEN);  ?>')">Agregar</a>
                 </div>
               </div>
             </div>
@@ -132,6 +147,7 @@ function listarArchivos($con)
 
   </main>
 
+  <script src="js/script.js"></script>
 </body>
 
 </html>
