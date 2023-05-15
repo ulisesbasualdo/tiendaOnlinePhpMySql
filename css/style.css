@@ -1,43 +1,45 @@
-main > .container {
-    padding: 30px 0;
+main>.container {
+	padding: 30px 0;
 }
 
 
-*{
-	
-	box-sizing:border-box;
+* {
+
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-	
+
 }
 
-body{
-	background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,79,121,1) 35%, rgba(0,212,255,1) 100%);
+body {
+	background: rgb(236, 255, 200);
+	background: radial-gradient(circle, rgba(236, 255, 200, 1) 0%, rgba(0, 190, 255, 1) 100%);
 	text-align: center;
 	font-family: sans-serif;
 	color: #000;
 }
 
-h1{
+h1 {
 	font-size: 40px;
 	padding: 10px;
 }
 
-h2{
+h2 {
 	font-size: 35px;
 }
-h3{
+
+h3 {
 	font-size: 22px;
 }
-p{
+
+p {
 	font-size: 18px;
 	padding: 10px;
 }
 
-.contenedor_loader{
-	background: rgb(2,0,36);
-	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,79,121,1) 35%, rgba(0,212,255,1) 100%);
+.contenedor_loader {
+	background: rgb(236, 255, 200);
+	background: radial-gradient(circle, rgba(236, 255, 200, 1) 0%, rgba(0, 190, 255, 1) 100%);
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
@@ -48,28 +50,35 @@ p{
 	justify-content: center;
 }
 
-.loader, .loader:before, .loader:after{
+.loader,
+.loader:before,
+.loader:after {
 	border-radius: 50%;
 	width: 2.5em;
 	height: 2.5em;
 	animation: loader 1.5s infinite ease-in-out;
 }
-.loader{
+
+.loader {
 	color: #fff;
 	font-size: 13px;
 	position: relative;
 	animation-delay: -0.16s;
 }
-.loader:before, .loader:after{
+
+.loader:before,
+.loader:after {
 	content: '';
 	position: absolute;
 	top: 0;
 }
-.loader:before{
+
+.loader:before {
 	left: -3.5em;
 	animation-delay: -0.32s;
 }
-.loader:after{
+
+.loader:after {
 	left: 3.5em;
 
 }
@@ -77,105 +86,64 @@ p{
 
 
 
-@keyframes loader{
+@keyframes loader {
+
 	0%,
 	80%,
-	100%{
+	100% {
 		box-shadow: 0 2.5em 0 -1.3em;
 	}
-	40%{
+
+	40% {
 		box-shadow: 0 2.5em 0 0;
 	}
 }
 
-.delivery_texto{
-	width: 100%;
-}
-.objeto_fade{
-	opacity: 0.5;
-	transition: all 0.5s;
-}
-.aparece{
-	opacity: 1;
-	transform: none;
-}
 
-.apareciendo{
-	opacity: 0.5;
-	transition: all 0.5s;
-}
-
-.transform_up{
-	 transform: translateY(20%);
-}
-.transform_down{
-	transform:  translateY(-20%);
-}
-.transform_left{
-	transform:  translateX(11%);
-}
-.transform_right{
-	transform:  translateX(-20%);
-}
-
-#menu{
-	position: fixed;
-	width: 100%;
-	background: #000000b0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	box-shadow: 5px 0 10px rgna(0,0,0,.6);
-	transition: 0.5s;
-	z-index: 99;
-
-}
-
-
-#menu-admin{
+#menu-admin {
 	top: 0;
 	width: 100%;
 	background: #000000b0;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	box-shadow: 5px 0 10px rgba(0,0,0,.6);
+	box-shadow: 5px 0 10px rgba(0, 0, 0, .6);
 	transition: 0.5s;
 	z-index: 99;
 }
 
 
-.logo{
+.logo {
 	color: #fff;
 	font-size: 26px;
-    padding: 0 54px;
+	padding: 0 54px;
 	font-weight: bold;
 }
 
-.logo p{
+.logo p {
 	font-size: 15px;
 	padding: 0px;
 	text-align: right;
 }
 
-.logo img{
+.logo img {
 	width: 15px;
 	height: 15px;
 	padding-left: 4px;
 }
 
-.menu_items{
+.menu_items {
 	display: flex;
 	list-style: none;
 	margin-right: 30px;
 }
 
-.menu_items li{
+.menu_items li {
 	border-radius: 3px;
 	margin: 0 5px;
 }
 
-.menu_items li a{
+.menu_items li a {
 	padding: 7px 13px;
 	text-decoration: none;
 	font-size: 18px;
@@ -184,12 +152,13 @@ p{
 	color: #fff;
 }
 
-.menu_items li:hover, li.active {
+.menu_items li:hover,
+li.active {
 	background-color: #858585;
 	transition: .4s;
 }
 
-.btn_menu{
+.btn_menu {
 	margin-right: 30px;
 	font-size: 25px;
 	color: #fff;
@@ -202,472 +171,31 @@ ul.show {
 }
 
 
-/*----------titulo descripcion logo-----*/
-
-.contenedorportada{
-	width: 100%;
-}
-.cajamadre1{
-	padding: 30px;
-	text-align: left;
-	background: rgba(0, 0, 0, 0.7) ;
-	color: #fff;
-
-}
-
-.portada{
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-/*-------fin titulo descripcion logo-------*/
-
-
-
-/*--------------nuestro proposito------------*/
-
-/*--------------fin nuestro proposito------------*/
-
-
-/*--------------sabores titulo------------*/
-
-
-/*--------------fin sabores titulo------------*/
-
-
-/*--------------sabores------------*/
-.sabores_padre{
-	max-width: 100%;
-}
-
-.sabores{
-	display: flex;
-	align-content: flex-start;
-	flex-wrap: wrap;
-	padding: 27px;
-	justify-content: center;
-	color: #fff;
-}
-
-.sabores h3{
-	color: #fff;
-}
-.sabores div{
-	padding: 17px;
-	width: 33%;
-	float: left;
-
-} 
-
-.sabores_img {
-	padding-top: 15px;
-	width: 25%;
-	height: 25%;
-}
-
-.sabores_h2{
-	color: #fff;
-	
-}
-
-.sabores7 a:hover{
-	color: #fff;
-}
-/*--------------fin sabores------------*/
-
-
-
-/*--------------nosotros------------*/
-
-.sobre{
-	
-	padding: 45px;
-	text-align: right;
-}
-.sobre h2{
-	padding: 7px;
-	font-size: 40px;
-}
-.sobre p{
-	padding: 15px;
-
-}
-.sobre img{
-	float:right;
-	width: 30%;
-	padding: 7px;
-}
-
-.sobre_alaizquierda p{
-	text-align: left;
-
-}
-/*--------------fin nosotros------------*/
-
-
-/*--------------contacto------------*/
-.contacto {
-	background-color: rgba(0,0,0,.7);
-	padding: 45px;
-    text-align: right;
-}
-.contacto p{
-	padding: 10px;
-}
-.contacto h2{
-	padding-bottom: 15px;
-	font-size: 30px;
-}
-
-.contacto img{
-	float:left;
-	width: 45%;
-}
-
-.chocologo{
-	width: 100%;
-}
-
-.potes img{
-
-	width: 2%;
-	padding: 0;
-}
-
-/*--------------fin contacto------------*/
-
-
-/*--------------footer------------*/
-footer{
-	color: #fff;
-	padding: 28px;
-}
-footer a{
-	color: #fff;
-	text-decoration: none;
-	font-size: 20px;
-}
-
-footer img{
-	width: 5%;
-	height: 5%;
-}
-
-
-/*--------------fin footer------------*/
-
-/*-------------llamanos--------*/
-.llamanos{
-	width: 100%;
-	position: fixed;
-	padding: 15px;
-	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.7) ;
-	justify-content: center;
-	color: #fff;
-}
-.llamanos:hover{
-	color:#0033cc;
-}
-.llamanos .pre{
-	display: flex;
-}
-
-.llamanos p{
-	padding: 5px;
-
-	color: #fff;
-}
-
-@media only screen and (min-width: 768px) {
-
-.llamanos{
-	display: none;
-}
-
-
-
-
-
-	}
-@media only screen and (max-width: 768px) {
-#menu{
-	display: none;
-}
-.cajamadre1{
-		text-align: center;
-	}
-.sabores{
-	display: flex;
-	align-content: flex-start;
-	flex-wrap: wrap;
-	padding: 27px;
-	justify-content: center;
-	color: #fff;
-}
-
-.sabores h3{
-	color: #ec268f;
-}
-.sabores div{
-	padding: 17px;
-	width: 50%;
-	float: left;
-
-} 
-footer {
-    padding-bottom: 165px;
-    }
-
-.portada {
-    height: 400px;
-}
-.contacto{
-	text-align: center;
-}
-.sobre{
-	text-align: center;
-}
-.sobre_alaizquierda p{
-	text-align: center;
-
-}
-.contacto{
-	text-align: center;
-}
-.contacto img {
-    float: none;
-    width: 50%;
-    padding: 17px;
-}
-.sobre{
-	text-align: center;
-}
-
-.sobre img {
-    float: none;
-    width: 50%
-}
-.sobre h2{
-	padding: 0;
-    font-size: 35px;
-}
-}
-
-@media only screen and (max-width: 650px) {
-	.sabores div{
-	padding: 17px;
-	width: 100%;
-	float: left;
-
-} 
-footer img {
-    width: 8%;
-}
-}
-
-@media only screen and (max-width: 500px) {
-	.contacto img {
-    width: 70%;
-}
-footer img {
-    width: 12%;
-}
-}
-@media only screen and (max-width: 400px) {
-.contacto img {
-    width: 100%;
-}
-}
-
-@media only screen and (max-width: 350px) {
-	h1{
-	    font-size: 32px;
-	    padding: 0;
-	}
-.cajamadre1{
-		text-align: center;
-	}
-#menu{
-	display: none;
-}
-
-.sabores{
-	display: flex;
-	align-content: flex-start;
-	flex-wrap: wrap;
-	padding: 27px;
-	justify-content: center;
-	color: #fff;
-}
-
-.sabores h3{
-	color: #ec268f;
-}
-
-
-.portada {
-    height: 400px;
-}
-.contacto{
-	text-align: center;
-}
-.contacto img {
-    float: none;
-    width: 100%;
-    padding: 17px;
-}
-.sobre{
-	text-align: center;
-}
-
-.sobre img {
-    float: none;
-    width: 100%
-}
-.sobre h2{
-	padding: 0;
-    font-size: 35px;
-}
-
-.sobre_alaizquierda p{
-	text-align: center;
-
-}
-
-
-
-.sabores_img {
-   
-    width: 50%;
-}
-
-footer {
-    padding-bottom: 165px;
-    }
-
-footer img{
-	width: 40px;
-}
-}
-
-@media only screen and (max-width: 250px) {
-	h1{
-	    font-size: 30px;
-	    padding: 0;
-	}
-	h2{
-		font-size: 30px;
-	}
-	h3{
-		font-size: 18px;
-	}
-	.sobre h2{
-		font-size: 25px;
-	}
-	.contacto h2{
-		font-size: 25px;
-	}
-}
-
 button {
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    background-color: #0033cc;
-    color: #fff;
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
+	-webkit-transition-duration: 0.4s;
+	/* Safari */
+	transition-duration: 0.4s;
+	background-color: #0033cc;
+	color: #fff;
+	border: none;
+	padding: 7px;
+	border-radius: 5px;
 }
 
 button:hover {
-    background-color: #fff; /* Green */
-    color: #0033cc;
+	background-color: #fff;
+	/* Green */
+	color: #0033cc;
 }
 
-button a{
-	text-decoration: none;
-}
-button a:hover{
-	color:#0033cc;
-}
-
-a{
-	color: #fff;
-}
-a:hover{
-	color:#0033cc;
-}
-
-
-.boton {
-	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
-	background-color:#2dabf9;
-	border-radius:4px;
-	border:1px solid #0b0e07;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:12px 12px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #263666;
-	width: 80%;
-}
-.boton:hover {
-	background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
-	background-color:#0688fa;
-}
-.boton:active {
-	position:relative;
-	top:1px;
-}
-
-.boton_verprecios {
-	background:linear-gradient(to bottom, #44c767 5%, #5cbf2a 100%);
-	background-color:#44c767;;
-	border-radius:4px;
-	border:1px solid #0b0e07;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:13px;
-	font-weight:bold;
-	padding:12px 12px;
-	text-decoration:none;
-	text-shadow:0px 1px 0px #263666;
-	width: 35%;
-}
-.boton_verprecios:hover {
-	background:linear-gradient(to bottom, #5cbf2a 5%, #44c767 100%);
-	background-color:#5cbf2a;
-}
-.boton_verprecios:active {
-	position:relative;
-	top:1px;
-}
-
-.llamanos a{
-	margin: 4px;
-}
-
-label {
-	display: block;
-	padding: 15px;
-}
-
-a {
+button a {
 	text-decoration: none;
 }
 
-.escondido{
-	display: none;
+button a:hover {
+	color: #0033cc;
 }
 
-.imgProducto{
-	background-size:contain;
+a:hover {
+	color: #0033cc;
 }

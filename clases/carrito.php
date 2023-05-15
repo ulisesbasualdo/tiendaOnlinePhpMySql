@@ -2,21 +2,21 @@
 
 require '../config/config.php';
 
-if (isset($_POST['id'])){
+if (isset($_POST['id'])) {
     $id = $_POST['id'];
     $token = $_POST['token'];
 
     $token_tmp = hash_hmac('sha256', $id, KEY_TOKEN);
-    if($token == $token_tmp){
-        if(isset($_SESSION['carrito']['productos'][$id])){
+    if ($token == $token_tmp) {
+        if (isset($_SESSION['carrito']['productos'][$id])) {
             $_SESSION['carrito']['productos'][$id] += 1;
-        } else{
+        } else {
             $_SESSION['carrito']['productos'][$id] = 1;
         }
         $datos['numero'] = count($_SESSION['carrito']['productos']);
-        $datos['ok'] = true;        
+        $datos['ok'] = true;
 
-    } else{
+    } else {
         $datos['ok'] = false;
     }
 

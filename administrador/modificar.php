@@ -1,8 +1,7 @@
 <?php
-
-include("../conexion.php");
-$con = conectar();
-$tpm = 0;
+require_once '../config/database.php';
+$db = new Database();
+$pdo = $db->conectar();
 $id = $_POST['id'];
 $nombre = $_POST['nombre'];
 $descripcion = $_POST['descripcion'];
@@ -10,30 +9,32 @@ $categoria = $_POST['categoria'];
 $precio = $_POST['precio'];
 $descuento = $_POST['descuento'];
 $activo = $_POST['activo'];
-$imagen = $_FILES['imagen'];
-//move_uploaded_file($_FILES['imagen']['tmp_name'],"../img/".$_FILES['imagen']);
+$imgFile = $_FILES['imagen'];
 
-#archivo
-
-
-$tmp = $imagen['tmp_name'];
-if ($tmp) {
-    $contenido = file_get_contents($tmp);
-    $archivoBLOB = addslashes($contenido);
-}
-
-
-
-if ($archivoBLOB) {
-    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',descuento='$descuento',activo='$activo',imagen='$archivoBLOB' WHERE id='$id'";
-    $query = mysqli_query($con, $sql);
+if (!empty($imgFile['tmp_name'])) {
+    $archivoBLOB = bin2hex(file_get_contents($imgFile['tmp_name']));
+    $sql = "UPDATE products SET nombre=:nombre, descripcion=:descripcion, categoria=:categoria, precio=:precio, descuento=:descuento, activo=:activo, imagen=UNHEX(:imagen) WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':imagen', $archivoBLOB, PDO::PARAM_STR);
 } else {
-    $sql = "UPDATE products SET nombre='$nombre',descripcion='$descripcion',categoria='$categoria',precio='$precio',descuento='$descuento',activo='$activo' WHERE id='$id'";
-    $query = mysqli_query($con, $sql);
+    $sql = "UPDATE products SET nombre=:nombre, descripcion=:descripcion, categoria=:categoria, precio=:precio, descuento=:descuento, activo=:activo WHERE id=:id";
+    $stmt = $pdo->prepare($sql);
 }
 
+$stmt->bindParam(':id', $id, PDO::PARAM_STR);
+$stmt->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+$stmt->bindParam(':descripcion', $descripcion, PDO::PARAM_STR);
+$stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
+$stmt->bindParam(':precio', $precio, PDO::PARAM_STR);
+$stmt->bindParam(':descuento', $descuento, PDO::PARAM_STR);
+$stmt->bindParam(':activo', $activo, PDO::PARAM_STR);
+$stmt->execute();
 
-if ($query) {
-    Header("Location: carga.php");
+if ($stmt) {
+    header("Location: carga.php");
+    exit();
+} else {
+    echo "Error al cargar el producto";
 }
+
 ?>

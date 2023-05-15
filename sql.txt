@@ -1,1 +1,44 @@
-CREATE TABLE `ecommerce`.`products` (`id` INT NOT NULL AUTO_INCREMENT , `nombre` VARCHAR(200) NOT NULL , `descripcion` TEXT NOT NULL , `precio` DECIMAL(10,2) NOT NULL , `categoria` INT NOT NULL , `activo` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE DATABASE ecommerce;
+use ecommerce;
+
+CREATE TABLE `compra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_transaccion` varchar(20) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `id_cliente` varchar(20) NOT NULL,
+  `total` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(200) NOT NULL,
+  `descripcion` text NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `descuento` tinyint(3) NOT NULL DEFAULT 0,
+  `categoria` int(11) NOT NULL,
+  `activo` int(11) NOT NULL,
+  `imagen` longblob NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `detalle_compra` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_compra` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `precio` decimal(10,2) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_compra`) REFERENCES `compra`(`id`),
+  FOREIGN KEY (`id_producto`) REFERENCES `products`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+CREATE TABLE `usuarios` (
+  `nombre_usuario` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
